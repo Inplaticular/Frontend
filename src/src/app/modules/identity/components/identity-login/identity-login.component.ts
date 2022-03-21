@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IdentityService } from '../../services/identity.service';
 
 @Component({
@@ -13,7 +15,7 @@ export class IdentityLoginComponent implements OnInit {
     password: ''
   }
 
-  constructor(private router: Router, private identityService: IdentityService) { }
+  constructor(private router: Router, private identityService: IdentityService, private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,7 @@ export class IdentityLoginComponent implements OnInit {
     this.identityService.sendLoginRequest(this.formModel)
       .subscribe({
         next: this.onSubmitSuccess.bind(this),
-        error: (error) => { console.log(error) }
+        error: this.onSubmitError.bind(this)
       })
   }
 
@@ -32,10 +34,26 @@ export class IdentityLoginComponent implements OnInit {
       this.router.navigateByUrl('');
       response.messages.forEach((message: any) => {
         console.log(`${message.code}: ${message.description}`);
+        this.toastrService.success(message.description, message.code);
       });
     } else {
       response.errors.forEach((error: any) => {
         console.error(`${error.code}: ${error.description}`);
+        this.toastrService.error(error.description, error.code);
+      });
+    }
+  }
+
+  onSubmitError(error: any) {    
+    if (!(error instanceof HttpErrorResponse)) {
+      console.error(error);
+      return;
+    }
+
+    if (error.error.errors && error.error.errors instanceof Array) {
+      error.error.errors.forEach((error: any) => {
+        console.error(`${error.code}: ${error.description}`);
+        this.toastrService.error(error.description, error.code);
       });
     }
   }
