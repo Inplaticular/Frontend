@@ -8,7 +8,8 @@ export const environment = {
   production: false,
   apiRoutes: {
     identity: {
-      signUp: protocolAndDomain + "/v1/authentication/signup"
+      signUp: protocolAndDomain + "/v1/authentication/signup",
+      login: protocolAndDomain + "/v1/authentication/login"
     }
   }
 };

@@ -10,4 +10,8 @@ export class IdentityService {
     sendSignUpRequest(body: { username: string, email: string, password: string }): Observable<any> {
         return this.http.post(environment.apiRoutes.identity.signUp, body)
     }
+
+    sendLoginRequest(body: { usernameEmail: string, password: string }): Observable<any> {
+        return this.http.post(environment.apiRoutes.identity.login, body)
+      }
 }
