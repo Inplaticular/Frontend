@@ -9,7 +9,9 @@ export const environment = {
   apiRoutes: {
     identity: {
       signUp: protocolAndDomain + "/v1/authentication/signup",
-      login: protocolAndDomain + "/v1/authentication/login"
+      login: protocolAndDomain + "/v1/authentication/login",
+      getResetToken: protocolAndDomain + "/v1/authentication/requestresetpwd",
+      changePassword: protocolAndDomain + "/v1/authentication/resetpwd"
     }
   }
 };
