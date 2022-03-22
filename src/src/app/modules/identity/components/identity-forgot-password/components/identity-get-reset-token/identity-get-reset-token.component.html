@@ -1,8 +1,8 @@
 <form [formGroup]="formModel" #requestForm='ngForm' class="dms-form" autocomplete="off" (submit)="onSubmit()">
   <div class="form-group required">
-    <input class="form-control my-3" formControlName="requestEmail" placeholder="Email">
-    <label class="text-danger" *ngIf="formModel.get('requestEmail')?.touched && formModel.get('requestEmail')?.errors?.['required']">This field is mandatory.</label>
-    <label class="text-danger" *ngIf="formModel.get('requestEmail')?.touched && formModel.get('requestEmail')?.errors?.['email']">Invalid email address.</label>
+    <input id="requestEmailInput" class="form-control my-3" formControlName="requestEmail" placeholder="Email">
+    <label id="requestEmailInputRequiredError" class="text-danger" *ngIf="formModel.get('requestEmail')?.touched && formModel.get('requestEmail')?.errors?.['required']">This field is mandatory.</label>
+    <label id="requestEmailInputEmailError" class="text-danger" *ngIf="formModel.get('requestEmail')?.touched && formModel.get('requestEmail')?.errors?.['email']">Invalid email address.</label>
   </div>
-  <input class="btn btn-primary my-2" type="submit" value="Request Token" [disabled]="!formModel.valid"/>
+  <input id="requestFormSubmitButton" class="btn btn-primary my-2" type="submit" value="Request Token" [disabled]="!formModel.valid"/>
 </form>

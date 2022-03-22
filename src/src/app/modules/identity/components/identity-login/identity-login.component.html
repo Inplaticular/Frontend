@@ -1,12 +1,12 @@
 <form #form='ngForm' class="dms-form" autocomplete="off" (submit)="onSubmit()">
   <h2>Login</h2>
   <div class="form-group">
-    <input class="form-control my-3" #UserName="ngModel" name="UsernameEmail" placeholder="Username or Email" [(ngModel)]="formModel.usernameEmail" required>
+    <input id="usernameEmailInput" class="form-control my-3" #UserName="ngModel" name="UsernameEmail" placeholder="Username or Email" [(ngModel)]="formModel.usernameEmail" required>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control my-3" #Password="ngModel" name="Password" placeholder="Password" [(ngModel)]="formModel.password" required>
-    <p class="m-0">Forgor your password? <a href="" routerLink="/identity/forgot_password">Try to change your password</a></p>
+    <input id="passwordInput" type="password" class="form-control my-3" #Password="ngModel" name="Password" placeholder="Password" [(ngModel)]="formModel.password" required>
+    <p class="m-0">Forgor your password? <a id="forgotPasswordLink" href="" routerLink="/identity/forgot_password">Try to change your password</a></p>
   </div>
-  <input class="btn btn-primary my-2" type="submit" value="Login" [disabled]="form.invalid"/>
-  <p class="m-0">Don't have an account? <a href="" routerLink="/identity/signup">Sign Up</a></p>
+  <input id="loginFormSubmitButton" class="btn btn-primary my-2" type="submit" value="Login" [disabled]="form.invalid"/>
+  <p class="m-0">Don't have an account? <a id="signUpLink" href="" routerLink="/identity/signup">Sign Up</a></p>
 </form>
