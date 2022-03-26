@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col" style="-ms-flex: 0 0 350px; flex: 0 0 350px;">
+      <app-user-info class="card col my-5 p-4 shadow rounded card-bg"></app-user-info>
+    </div>
+    <div class="col">
+      <app-plant-list class="card col my-5 p-4 shadow rounded card-bg" [garden]="garden"></app-plant-list>
+      <app-permission-list class="card col my-5 p-4 shadow rounded card-bg" [garden]="garden"></app-permission-list>
+    </div>
+  </div>
+</div>

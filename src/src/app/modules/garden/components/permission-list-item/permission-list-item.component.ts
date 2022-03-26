@@ -1,60 +1,50 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IdentityService } from 'src/app/modules/identity/services/identity.service';
 import { GardenService } from '../../services/garden.service';
 import { ConfirmDeleteDialogContentComponent } from '../dialogs/confirm-delete-dialog-content/confirm-delete-dialog-content.component';
 
 @Component({
-  selector: 'app-garden-list-item',
-  templateUrl: './garden-list-item.component.html',
-  styleUrls: ['./garden-list-item.component.scss']
+  selector: 'app-permission-list-item',
+  templateUrl: './permission-list-item.component.html',
+  styleUrls: ['./permission-list-item.component.scss']
 })
-export class GardenListItemComponent implements OnInit {
-  @Input() garden: any;
-  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+export class PermissionListItemComponent implements OnInit, OnChanges {
+  @Input() permission: any;
+  @Input() gardenId!: string;
+  user: string = '';
 
-  editing: boolean = false;
-
-  constructor(private router: Router, private dialog: MatDialog, private gardenService: GardenService, private toastrService: ToastrService) { }
+  constructor(private dialog: MatDialog, private identityService: IdentityService, private gardenService: GardenService, private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.permission)
+      return;
 
-  startEdit() {
-    this.editing = true;
-  }
+    this.user = this.permission.userId;
 
-  viewGarden() {
-    this.router.navigateByUrl(`/user/garden/${this.garden.id}`);
-  }
-
-  submitEdit() {
-    this.gardenService.sendUpdateGardenRequest({ gardenId: this.garden.id, name: this.nameInput.nativeElement.value }).subscribe({
+    this.identityService.sendGetUserByIdRequest(this.permission.userId).subscribe({
       next: (response: any) => this.onSubmitSuccess(response, () => {
-        window.location.reload();
+        this.user = response.content.user.username;
       }),
       error: this.onSubmitError.bind(this)
     });
-
-    this.editing = false;
-  }
-
-  cancelEdit() {
-    this.editing = false;
   }
 
   startDelete() {
     this.dialog.open(ConfirmDeleteDialogContentComponent, {
       data: {
-        target: `Garden: ${this.garden.name}`
+        target: `Permission: ${this.user}: ${this.permission.value}`
       }
     }).afterClosed().subscribe(((result: boolean) => {
       if (!result)
         return;
 
-      this.gardenService.sendDeleteGardenRequest({ gardenId: this.garden.id }).subscribe({
+      this.gardenService.sendDeleteGardenPermission({ gardenId: this.gardenId, permissionId: this.permission.id }).subscribe({
         next: (response: any) => this.onSubmitSuccess(response, () => {
           window.location.reload();
         }),

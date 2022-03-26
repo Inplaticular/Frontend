@@ -1,60 +1,33 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GardenService } from '../../services/garden.service';
 import { ConfirmDeleteDialogContentComponent } from '../dialogs/confirm-delete-dialog-content/confirm-delete-dialog-content.component';
 
 @Component({
-  selector: 'app-garden-list-item',
-  templateUrl: './garden-list-item.component.html',
-  styleUrls: ['./garden-list-item.component.scss']
+  selector: 'app-plant-list-item',
+  templateUrl: './plant-list-item.component.html',
+  styleUrls: ['./plant-list-item.component.scss']
 })
-export class GardenListItemComponent implements OnInit {
-  @Input() garden: any;
-  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+export class PlantListItemComponent implements OnInit {
+  @Input() plant: any;
 
-  editing: boolean = false;
-
-  constructor(private router: Router, private dialog: MatDialog, private gardenService: GardenService, private toastrService: ToastrService) { }
+  constructor(private dialog: MatDialog,private gardenService: GardenService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-  }
-
-  startEdit() {
-    this.editing = true;
-  }
-
-  viewGarden() {
-    this.router.navigateByUrl(`/user/garden/${this.garden.id}`);
-  }
-
-  submitEdit() {
-    this.gardenService.sendUpdateGardenRequest({ gardenId: this.garden.id, name: this.nameInput.nativeElement.value }).subscribe({
-      next: (response: any) => this.onSubmitSuccess(response, () => {
-        window.location.reload();
-      }),
-      error: this.onSubmitError.bind(this)
-    });
-
-    this.editing = false;
-  }
-
-  cancelEdit() {
-    this.editing = false;
   }
 
   startDelete() {
     this.dialog.open(ConfirmDeleteDialogContentComponent, {
       data: {
-        target: `Garden: ${this.garden.name}`
+        target: `Plant: ${this.plant.plantData.friendlyName}`
       }
     }).afterClosed().subscribe(((result: boolean) => {
       if (!result)
         return;
 
-      this.gardenService.sendDeleteGardenRequest({ gardenId: this.garden.id }).subscribe({
+      this.gardenService.sendDeletePlantRequest({ plantId: this.plant.id }).subscribe({
         next: (response: any) => this.onSubmitSuccess(response, () => {
           window.location.reload();
         }),

@@ -38,6 +38,7 @@ export class IdentitySignupComponent implements OnInit {
   onSubmitSuccess(response: any) {
     if (response.succeeded) {
       this.formModel.reset();
+      this.router.navigateByUrl('/identity/login');
       response.messages.forEach((message: any) => {
         console.log(`${message.code}: ${message.description}`);
         this.toastrService.success(message.description, message.code);

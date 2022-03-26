@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <h2>Permissions</h2>
+  </div>
+  <div class="col" style="-ms-flex: 0 0 62px; flex: 0 0 62px;">
+    <div class="btn-group mr-2">
+      <button class="btn btn-primary" (click)="startCreate()"><i class="fa-solid fa-plus"></i></button>
+    </div>
+  </div>
+</div>
+<div *ngIf="garden && permissions.length > 0" class="row mt-3 list-group list-group-flush">
+  <app-permission-list-item *ngFor="let permission of permissions" class="list-group-item d-flex align-items-center" [permission]="permission" [gardenId]="garden.id"></app-permission-list-item>
+</div>
+<p *ngIf="!garden || permissions.length == 0">This garden does not contain any additional permissions</p>

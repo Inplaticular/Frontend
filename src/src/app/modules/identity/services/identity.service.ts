@@ -26,4 +26,8 @@ export class IdentityService {
     sendAuthorizeUserRequest(body: { token: string}): Observable<any> {
         return this.http.post(environment.apiRoutes.identity.authorizeUser, body);
     }
+
+    sendGetUserByIdRequest(userId: string): Observable<any> {
+        return this.http.get(environment.apiRoutes.identity.informationUserById+`?UserId=${userId}`)
+    }
 }
