@@ -49,6 +49,18 @@ export class GardenService {
     return this.http.delete(environment.apiRoutes.garden.plants, { body: body, headers: this.createAuthHeaders() })
   }
 
+  sendGetGardenPermissions(gardenId: string): Observable<any> {
+    return this.http.get(environment.apiRoutes.garden.gardenPermissions+`?GardenId=${gardenId}`, { headers: this.createAuthHeaders() });
+  }
+
+  sendDeleteGardenPermission(body: { gardenId: string, permissionId: string }): Observable<any> {
+    return this.http.delete(environment.apiRoutes.garden.gardenPermissions, { body: body, headers: this.createAuthHeaders() });
+  }
+
+  sendGetGardenRoles(): Observable<any> {
+    return this.http.get(environment.apiRoutes.garden.gardenRoles);
+  }
+
   createAuthHeaders(): {[header: string]: string | string[]; } {
     const headers: {[header: string]: string | string[]; } = {};
 

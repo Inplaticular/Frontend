@@ -9,7 +9,7 @@
   </div>
 </div>
 <hr class="m-0 mt-3">
-<div class="row">
-  <app-plant-list-item *ngFor="let plant of plants" class="col-6" [plant]="plant"></app-plant-list-item>
+<div *ngIf="garden && garden.plants && garden.plants.length > 0" class="row">
+  <app-plant-list-item *ngFor="let plant of garden.plants" class="col-6" [plant]="plant"></app-plant-list-item>
 </div>
-<p *ngIf="plants.length == 0">You don't have any plants yet</p>
+<p *ngIf="!garden || !garden.plants || garden.plants.length == 0">You don't have any plants yet</p>
