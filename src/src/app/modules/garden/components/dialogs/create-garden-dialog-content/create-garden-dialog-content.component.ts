@@ -1,38 +1,33 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
-import { IdentityService } from '../../services/identity.service';
+import { GardenService } from '../../../services/garden.service';
 
 @Component({
-  selector: 'app-identity-login',
-  templateUrl: './identity-login.component.html',
-  styleUrls: ['./identity-login.component.css']
+  selector: 'app-create-garden-dialog-content',
+  templateUrl: './create-garden-dialog-content.component.html',
+  styleUrls: ['./create-garden-dialog-content.component.scss']
 })
-export class IdentityLoginComponent implements OnInit {
-  formModel: { usernameEmail: string, password: string } = {
-    usernameEmail: '',
-    password: ''
-  }
+export class CreateGardenDialogContentComponent implements OnInit {
+  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private router: Router, private identityService: IdentityService, private toastrService: ToastrService) { }
+  constructor(private gardenService: GardenService, private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.identityService.sendLoginRequest(this.formModel)
-      .subscribe({
-        next: this.onSubmitSuccess.bind(this),
-        error: this.onSubmitError.bind(this)
-      })
+  onCreate() {
+    this.gardenService.sendCreateGardenRequest(this.nameInput.nativeElement.value).subscribe({
+      next: (response: any) => this.onSubmitSuccess(response, () => {
+        window.location.reload();
+      }),
+      error: this.onSubmitError.bind(this)
+    })
   }
 
-  onSubmitSuccess(response: any) {
+  onSubmitSuccess(response: any, onSuccessAction: (() => void)) {
     if (response.succeeded) {
-      localStorage.setItem(environment.authTokenKey, response.content.token);
-      this.router.navigateByUrl('');
+      onSuccessAction();
       response.messages.forEach((message: any) => {
         console.log(`${message.code}: ${message.description}`);
         this.toastrService.success(message.description, message.code);

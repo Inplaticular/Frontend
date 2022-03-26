@@ -5,3 +5,9 @@ services:
     restart: unless-stopped
     ports:
       - 5001:80
+    networks:
+      - inplanticular_net
+
+networks:
+  inplanticular_net:
+    external: true

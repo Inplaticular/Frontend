@@ -1,0 +1,12 @@
+<p *ngIf="!editing" class="m-0">{{garden.name}}</p>
+<form>
+  <input #nameInput [hidden]="!editing" class="form-control" type="text" placeholder="Garden Name" value="{{garden.name}}"/>
+</form>
+<div class="btn-group mr-2">
+  <button *ngIf="!editing" class="btn btn-primary" (click)="startEdit()"><i class="fa-solid fa-pen-to-square"></i></button>
+  <button *ngIf="!editing" class="btn btn-primary" (click)="viewGarden()"><i class="fa-solid fa-eye"></i></button>
+  <button *ngIf="!editing" class="btn btn-primary" (click)="startDelete()"><i class="fa-solid fa-trash-can"></i></button>
+
+  <button *ngIf="editing" class="btn btn-primary" (click)="submitEdit()"><i class="fa-solid fa-check"></i></button>
+  <button *ngIf="editing" class="btn btn-primary" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></button>
+</div>

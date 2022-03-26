@@ -22,4 +22,8 @@ export class IdentityService {
     sendChangePasswordRequest(body: { email: string, resetToken: string, newPassword: string }): Observable<any> {
         return this.http.post(environment.apiRoutes.identity.changePassword, body);
     }
+
+    sendAuthorizeUserRequest(body: { token: string}): Observable<any> {
+        return this.http.post(environment.apiRoutes.identity.authorizeUser, body);
+    }
 }
