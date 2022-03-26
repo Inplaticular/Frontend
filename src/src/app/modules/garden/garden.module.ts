@@ -10,6 +10,10 @@ import { GardenListComponent } from './components/garden-list/garden-list.compon
 import { GardenListItemComponent } from './components/garden-list-item/garden-list-item.component';
 import { ConfirmDeleteDialogContentComponent } from './components/dialogs/confirm-delete-dialog-content/confirm-delete-dialog-content.component';
 import { CreateGardenDialogContentComponent } from './components/dialogs/create-garden-dialog-content/create-garden-dialog-content.component';
+import { GardenDetailComponent } from './components/garden-detail/garden-detail.component';
+import { PlantListItemComponent } from './components/plant-list-item/plant-list-item.component';
+import { PlantListComponent } from './components/plant-list/plant-list.component';
+import { CreatePlantDialogContentComponent } from './components/dialogs/create-plant-dialog-content/create-plant-dialog-content.component';
 
 @NgModule({
   imports: [
@@ -26,7 +30,11 @@ import { CreateGardenDialogContentComponent } from './components/dialogs/create-
     GardenListComponent,
     GardenListItemComponent,
     ConfirmDeleteDialogContentComponent,
-    CreateGardenDialogContentComponent
+    CreateGardenDialogContentComponent,
+    GardenDetailComponent,
+    PlantListComponent,
+    PlantListItemComponent,
+    CreatePlantDialogContentComponent,
   ]
 })
 export class GardenModule { }

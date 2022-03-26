@@ -2,7 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const protocolAndDomain: string = "http://localhost:7005";
+const identityProtocolAndDomain: string = "http://localhost:7005";
+const gardenProtocolAndDomain: string = "http://localhost:7005";
 
 export const environment = {
   production: false,
@@ -10,15 +11,17 @@ export const environment = {
   authTokenHeaderKey: "Authorization",
   apiRoutes: {
     identity: {
-      signUp: protocolAndDomain + "/api/identity/v1/authentication/signup",
-      login: protocolAndDomain + "/api/identity/v1/authentication/login",
-      getResetToken: protocolAndDomain + "/api/identity/v1/authentication/requestresetpwd",
-      changePassword: protocolAndDomain + "/api/identity/v1/authentication/resetpwd",
-      authorizeUser: protocolAndDomain + "/api/identity/v1/authorize/user"
+      signUp: identityProtocolAndDomain + "/api/identity/v1/authentication/signup",
+      login: identityProtocolAndDomain + "/api/identity/v1/authentication/login",
+      getResetToken: identityProtocolAndDomain + "/api/identity/v1/authentication/requestresetpwd",
+      changePassword: identityProtocolAndDomain + "/api/identity/v1/authentication/resetpwd",
+      authorizeUser: identityProtocolAndDomain + "/api/identity/v1/authorize/user"
     },
     garden: {
-      garden: protocolAndDomain + "/api/garden/v1/gardens",
-      gardenList: protocolAndDomain + "/api/garden/v1/gardens/list"
+      gardenList: gardenProtocolAndDomain + "/api/garden/v1/gardens/list",
+      garden: gardenProtocolAndDomain + "/api/garden/v1/gardens",
+      plants: gardenProtocolAndDomain + "/api/garden/v1/plants",
+      plantData: gardenProtocolAndDomain + "/api/garden/v1/plants/plant_data"
     }
   }
 };

@@ -1,0 +1,31 @@
+<div class="card p-3 rounded mt-3">
+  <div class="card-body px-0">
+    <div class="row">
+      <div class="col">
+        <h4>{{plant.plantData.friendlyName}}</h4>
+      </div>
+      <div class="col" style="-ms-flex: 0 0 62px; flex: 0 0 62px;">
+        <div class="btn-group mr-2">
+          <button class="btn btn-primary" (click)="startDelete()"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row">
+        <strong class="col-6">Time From Planting:</strong>
+        <p class="col-6 m-0">{{plant.timeFromPlanting}}</p>
+      </div>
+      <div class="row">
+        <strong class="col-6">Ripe percentage:</strong>
+        <p class="col-6 m-0">{{plant.ripePercentage}}</p>
+      </div>
+      <div class="row">
+        <strong class="col-6">Number of fruits:</strong>
+        <p class="col-6 m-0">{{plant.actFruitCount}}</p>
+      </div>
+    </li>
+  </ul>
+  <p></p>
+</div>

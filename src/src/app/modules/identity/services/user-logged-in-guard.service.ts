@@ -20,10 +20,16 @@ export class UserLoggedInGuard implements CanActivate {
 
     try {
       return this.identityService.sendAuthorizeUserRequest({ token: authToken }).pipe(map(data => {
-        return data.content != undefined && data.content.authorized != undefined && data.content.authorized;
+        const authorized = data.content != undefined && data.content.authorized != undefined && data.content.authorized;
+
+        if (!authorized)
+          this.router.navigateByUrl('/identity/login');
+        
+        return authorized;
       }));
     }
     catch (err) {
+      this.router.navigateByUrl('/identity/login');
       return of(false)
     };
   }
