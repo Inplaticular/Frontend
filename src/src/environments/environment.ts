@@ -17,6 +17,7 @@ export const environment = {
       changePassword: identityProtocolAndDomain + "/api/identity/v1/authentication/resetpwd",
       authorizeUser: identityProtocolAndDomain + "/api/identity/v1/authorize/user",
       informationUserById: identityProtocolAndDomain + "/api/identity/v1/information/authentication/user",
+      informationUsersByNameOrEmail: identityProtocolAndDomain + "/api/identity/v1/information/authentication/users",
     },
     garden: {
       gardenList: gardenProtocolAndDomain + "/api/garden/v1/gardens/list",
