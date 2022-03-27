@@ -17,6 +17,8 @@ import { CreatePlantDialogContentComponent } from './components/dialogs/create-p
 import { PermissionListComponent } from './components/permission-list/permission-list.component';
 import { PermissionListItemComponent } from './components/permission-list-item/permission-list-item.component';
 import { CreatePermissionDialogContentComponent } from './components/dialogs/create-permission-dialog-content/create-permission-dialog-content.component';
+import { SpecifyGetYieldDialogContentComponent } from './components/dialogs/specify-get-yield-dialog-content/specify-get-yield-dialog-content.component';
+import { SpecifyGetGrowthDialogContentComponent } from './components/dialogs/specify-get-growth-dialog-content/specify-get-growth-dialog-content.component';
 
 @NgModule({
   imports: [
@@ -40,7 +42,9 @@ import { CreatePermissionDialogContentComponent } from './components/dialogs/cre
     CreatePlantDialogContentComponent,
     PermissionListComponent,
     PermissionListItemComponent,
-    CreatePermissionDialogContentComponent
+    CreatePermissionDialogContentComponent,
+    SpecifyGetYieldDialogContentComponent,
+    SpecifyGetGrowthDialogContentComponent
   ]
 })
 export class GardenModule { }

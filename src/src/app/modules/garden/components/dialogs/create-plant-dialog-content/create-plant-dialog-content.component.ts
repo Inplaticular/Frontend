@@ -19,7 +19,7 @@ export class CreatePlantDialogContentComponent implements OnInit {
     this.gardenService.sendGetPlantDataRequest().subscribe({
       next: (response: any) => this.onSubmitSuccess(response, () => {
         this.plantData = response.plantDataList;
-        
+
         if (this.plantData.length > 0)
           this.selectedBotanicalName = this.plantData[0].botanicalName;
 
@@ -54,7 +54,7 @@ export class CreatePlantDialogContentComponent implements OnInit {
     }
   }
 
-  onSubmitError(error: any) {    
+  onSubmitError(error: any) {
     if (!(error instanceof HttpErrorResponse)) {
       console.error(error);
       return;
