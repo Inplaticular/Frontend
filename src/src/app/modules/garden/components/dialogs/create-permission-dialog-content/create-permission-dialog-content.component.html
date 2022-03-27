@@ -1,0 +1,23 @@
+<h2>Add permission</h2>
+<mat-dialog-content class="my-3">
+  <div class="container p-0">
+    <div class="row" style="min-width: 400px;">
+      <div class="col-md-12">
+        <form [formGroup]="formModel" #form='ngForm'>
+          <input #userInput autocomplete="off" name="userInput" formControlName="userInput" class="form-control" type="text" placeholder="Username or Email"/>
+          <select #userSelect class="form-select mt-2" name="userSelect" formControlName="userSelect">
+            <option *ngFor="let user of users" value="{{user.id}}">{{user.username}} - {{user.email}}</option>
+          </select>          
+
+          <select #roleSelect class="form-select mt-4" name="roleSelect" formControlName="roleSelect">
+            <option *ngFor="let role of roles">{{role}}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-primary" mat-button mat-dialog-close=true (click)="onCreate()">Create</button>
+  <button class="btn btn-primary" mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

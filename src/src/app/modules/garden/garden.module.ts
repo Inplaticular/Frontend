@@ -16,6 +16,7 @@ import { PlantListComponent } from './components/plant-list/plant-list.component
 import { CreatePlantDialogContentComponent } from './components/dialogs/create-plant-dialog-content/create-plant-dialog-content.component';
 import { PermissionListComponent } from './components/permission-list/permission-list.component';
 import { PermissionListItemComponent } from './components/permission-list-item/permission-list-item.component';
+import { CreatePermissionDialogContentComponent } from './components/dialogs/create-permission-dialog-content/create-permission-dialog-content.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { PermissionListItemComponent } from './components/permission-list-item/p
     PlantListItemComponent,
     CreatePlantDialogContentComponent,
     PermissionListComponent,
-    PermissionListItemComponent
+    PermissionListItemComponent,
+    CreatePermissionDialogContentComponent
   ]
 })
 export class GardenModule { }

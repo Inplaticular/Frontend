@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { GardenService } from '../../services/garden.service';
+import { CreatePermissionDialogContentComponent } from '../dialogs/create-permission-dialog-content/create-permission-dialog-content.component';
 
 @Component({
   selector: 'app-permission-list',
@@ -12,7 +14,7 @@ export class PermissionListComponent implements OnInit, OnChanges {
   @Input() garden: any;
   permissions: any[] = []
 
-  constructor(private gardenService: GardenService, private toastrService: ToastrService) { }
+  constructor(private dialog: MatDialog, private gardenService: GardenService, private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
@@ -31,7 +33,9 @@ export class PermissionListComponent implements OnInit, OnChanges {
   }
 
   startCreate() {
-
+    this.dialog.open(CreatePermissionDialogContentComponent, { data: {
+      gardenId: this.garden.id
+    }});
   }
 
   onSubmitSuccess(response: any, onSuccessAction: (() => void)) {

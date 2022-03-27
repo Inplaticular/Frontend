@@ -30,4 +30,8 @@ export class IdentityService {
     sendGetUserByIdRequest(userId: string): Observable<any> {
         return this.http.get(environment.apiRoutes.identity.informationUserById+`?UserId=${userId}`)
     }
+
+    sendGetUserNameOrEmailRequest(nameEmail: string): Observable<any> {
+        return this.http.get(environment.apiRoutes.identity.informationUsersByNameOrEmail+`?UsernameEmail=${nameEmail}`)
+    }
 }
