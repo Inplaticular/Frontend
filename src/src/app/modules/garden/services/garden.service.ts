@@ -18,11 +18,11 @@ export class GardenService {
     return this.http.get(environment.apiRoutes.garden.gardenList+`?UserId=${token.sub}`, { headers: this.createAuthHeaders() });
   }
 
-  sendCreateGardenRequest(name: string): Observable<any> {
+  sendCreateGardenRequest(name: string, latitude:number, longitude:number): Observable<any> {
     const tokenString = localStorage.getItem(environment.authTokenKey) as string;
     const token = jwtDecode(tokenString, undefined) as any;
 
-    return this.http.post(environment.apiRoutes.garden.garden, { userId: token.sub, name: name }, { headers: this.createAuthHeaders() })
+    return this.http.post(environment.apiRoutes.garden.garden, { userId: token.sub, name: name, coordinateLatitude:latitude,CoordinateLongitude:longitude }, { headers: this.createAuthHeaders() })
   }
 
   sendUpdateGardenRequest(body: { gardenId: string, name: string }): Observable<any> {

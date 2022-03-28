@@ -10,6 +10,8 @@ import { GardenService } from '../../../services/garden.service';
 })
 export class CreateGardenDialogContentComponent implements OnInit {
   @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('latitudeInput') latitudeInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('longitudeInput') longitudeInput!: ElementRef<HTMLInputElement>;
 
   constructor(private gardenService: GardenService, private toastrService: ToastrService) { }
 
@@ -17,7 +19,7 @@ export class CreateGardenDialogContentComponent implements OnInit {
   }
 
   onCreate() {
-    this.gardenService.sendCreateGardenRequest(this.nameInput.nativeElement.value).subscribe({
+    this.gardenService.sendCreateGardenRequest(this.nameInput.nativeElement.value, parseFloat(this.latitudeInput.nativeElement.value),parseFloat(this.longitudeInput.nativeElement.value)).subscribe({
       next: (response: any) => this.onSubmitSuccess(response, () => {
         window.location.reload();
       }),
@@ -40,7 +42,7 @@ export class CreateGardenDialogContentComponent implements OnInit {
     }
   }
 
-  onSubmitError(error: any) {    
+  onSubmitError(error: any) {
     if (!(error instanceof HttpErrorResponse)) {
       console.error(error);
       return;
