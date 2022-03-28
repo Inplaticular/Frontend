@@ -1,0 +1,17 @@
+<h2>Specify Information For Growth Calculation</h2>
+<mat-dialog-content class="my-3">
+  <div class="container p-0">
+    <div class="row" style="min-width: 400px;">
+      <div class="col-md-12">
+        <form>
+          <input #fertilizerPercentageInput class="form-control mt-3" type="text" placeholder="Fertilizer Percentage"/>
+          <input #daysWithoutWaterInput class="form-control mt-3" type="text" placeholder="When did you water the plant last"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-primary" mat-button mat-dialog-close=true (click)="onCreate()">Calculate Growth</button>
+  <button class="btn btn-primary" mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

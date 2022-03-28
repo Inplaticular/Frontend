@@ -52,6 +52,12 @@ export class GardenService {
   sendGetGardenPermissions(gardenId: string): Observable<any> {
     return this.http.get(environment.apiRoutes.garden.gardenPermissions+`?GardenId=${gardenId}`, { headers: this.createAuthHeaders() });
   }
+  sendGetPlantYield(body: { plantId: string,fertilizerPercentage: number, actFruitCount: number, daysWithoutWater: number }): Observable<any> {
+    return this.http.post(environment.apiRoutes.garden.plantsYield, body, { headers: this.createAuthHeaders()});
+  }
+  sendGetPlantGrowth(body: { plantId: string,fertilizerPercentage: number, daysWithoutWater: number }): Observable<any> {
+    return this.http.post(environment.apiRoutes.garden.plantsGrowth, body, { headers: this.createAuthHeaders()});
+  }
 
   sendAddPermissionRequest(gardenId: string, userId: string, type: string, value: string): Observable<any> {
     return this.http.post(environment.apiRoutes.garden.gardenPermissions, { gardenId: gardenId, userId: userId, type: type, value: value }, { headers: this.createAuthHeaders() });

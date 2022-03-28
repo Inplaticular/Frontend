@@ -7,6 +7,8 @@
       <div class="col" style="-ms-flex: 0 0 62px; flex: 0 0 62px;">
         <div class="btn-group mr-2">
           <button class="btn btn-primary" (click)="startDelete()"><i class="fa-solid fa-trash-can"></i></button>
+          <button class="btn btn-primary" (click)="startYield()"><i class="fa-solid fa-apple-whole"></i></button>
+          <button class="btn btn-primary" (click)="startGrowth()"><i class="fa-solid fa-plant-wilt"></i></button>
         </div>
       </div>
     </div>
@@ -14,16 +16,24 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
       <div class="row">
-        <strong class="col-6">Time From Planting:</strong>
-        <p class="col-6 m-0">{{plant.timeFromPlanting}}</p>
+        <strong class="col-6">Date Planted:</strong>
+        <p class="col-6 m-0">{{plant.plantedAtDateTime}}</p>
       </div>
       <div class="row">
-        <strong class="col-6">Ripe percentage:</strong>
-        <p class="col-6 m-0">{{plant.ripePercentage}}</p>
+        <strong class="col-6">How Long To Mature:</strong>
+        <p class="col-6 m-0">{{plant.daysToMature}}</p>
       </div>
       <div class="row">
-        <strong class="col-6">Number of fruits:</strong>
+        <strong class="col-6">Ripe In Percent:</strong>
+        <p class="col-6 m-0">{{plant.growthPercentage}}</p>
+      </div>
+      <div class="row">
+        <strong class="col-6">Number Of Fruits:</strong>
         <p class="col-6 m-0">{{plant.actFruitCount}}</p>
+      </div>
+      <div class="row">
+        <strong class="col-6">Estimated Yield (g):</strong>
+        <p class="col-6 m-0">{{plant.yield}}</p>
       </div>
     </li>
   </ul>

@@ -4,6 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { GardenService } from '../../services/garden.service';
 import { ConfirmDeleteDialogContentComponent } from '../dialogs/confirm-delete-dialog-content/confirm-delete-dialog-content.component';
+import {
+  SpecifyGetYieldDialogContentComponent
+} from "../dialogs/specify-get-yield-dialog-content/specify-get-yield-dialog-content.component";
+import {
+  SpecifyGetGrowthDialogContentComponent
+} from "../dialogs/specify-get-growth-dialog-content/specify-get-growth-dialog-content.component";
 
 @Component({
   selector: 'app-plant-list-item',
@@ -51,7 +57,7 @@ export class PlantListItemComponent implements OnInit {
     }
   }
 
-  onSubmitError(error: any) {    
+  onSubmitError(error: any) {
     if (!(error instanceof HttpErrorResponse)) {
       console.error(error);
       return;
@@ -63,5 +69,29 @@ export class PlantListItemComponent implements OnInit {
         this.toastrService.error(error.description, error.code);
       });
     }
+  }
+
+  startYield() {
+    var dialogRef = this.dialog.open(SpecifyGetYieldDialogContentComponent, {
+      data: {
+        plantId: this.plant.id
+      }
+    });
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close();
+      window.location.reload()
+    });
+  }
+
+  startGrowth() {
+    var dialogRef = this.dialog.open(SpecifyGetGrowthDialogContentComponent, {
+      data: {
+        plantId: this.plant.id
+      }
+    });
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close();
+      window.location.reload()
+    });
   }
 }

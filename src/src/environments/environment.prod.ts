@@ -19,6 +19,8 @@ export const environment = {
       gardenList: gardenProtocolAndDomain + "/api/garden/v1/gardens/list",
       garden: gardenProtocolAndDomain + "/api/garden/v1/gardens",
       plants: gardenProtocolAndDomain + "/api/garden/v1/plants",
+      plantsYield: gardenProtocolAndDomain + "/api/garden/v1/plants/yield",
+      plantsGrowth: gardenProtocolAndDomain + "/api/garden/v1/plants/growth",
       plantData: gardenProtocolAndDomain + "/api/garden/v1/plants/plant_data",
       gardenPermissions: gardenProtocolAndDomain + "/api/garden/v1/gardens/permissions",
       gardenRoles: gardenProtocolAndDomain + "/api/garden/v1/gardens/permissions/roles"
