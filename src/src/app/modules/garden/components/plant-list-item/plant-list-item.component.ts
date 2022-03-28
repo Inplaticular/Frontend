@@ -79,9 +79,10 @@ export class PlantListItemComponent implements OnInit {
     });
     dialogRef.backdropClick().subscribe(result => {
       dialogRef.close();
+      window.location.reload()
     });
-    window.location.reload()
   }
+
   startGrowth() {
     var dialogRef = this.dialog.open(SpecifyGetGrowthDialogContentComponent, {
       data: {
@@ -89,9 +90,8 @@ export class PlantListItemComponent implements OnInit {
       }
     });
     dialogRef.backdropClick().subscribe(result => {
-
       dialogRef.close();
+      window.location.reload()
     });
-    window.location.reload()
   }
 }
